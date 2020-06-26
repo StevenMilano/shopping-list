@@ -1,8 +1,9 @@
 $(function addNewItem(){
     
-    $('#js-shopping-list-form').submit( event => {
+    //function for adding new items
+    $('#js-shopping-list-form').submit( function() {
         event.preventDefault();
-        let newItem = this.find('input[name="shopping-list-entry"]').val();
+        let newItem = $(this).find('input[name="shopping-list-entry"]').val();
         $('.shopping-list').append(
             `<li>   
                 <span class="shopping-item">${newItem}</span>
@@ -15,34 +16,22 @@ $(function addNewItem(){
                     </button>
                 </div>
             </li>`);
-    });
+            //resets input field to placeholder text after submit is clicked  
+            $('#js-shopping-list-form').children('input').val('');
+    }); 
 });
 
-//create a function for adding new items append() html()
-    //check for key press of return or clicking button.
-    //retrive value and store it
-    //create empty html element for new value
-    //place store value in new element
-
-
-
+//function to check off an item
 $(function checkItem(){
-    $('.shopping-item-toggle').on('click', function() {
-        $(this).closest('span').toggleClass('shopping-item__checked');
+    $('ul').on('click', '.shopping-item-toggle', function() {
+        $(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
     });
     
 });
-//create  a function for checking items on/off items, .toggle()
-    //check for clicking of check button.
-    //edit html to cross out item or uncross with .toggle()
 
-
-$(function deleteItem() {
-    $('.shopping-item-delete').on('click', function() {
+//function to delete an item off the list
+ $(function deleteItem() {
+    $('ul').on('click', '.shopping-item-delete', function() {
         $(this).closest('li').remove();
     });
 });
-
-//create a function to remove items from list. .remove()
-    //check for clicking of delte button
-    //remove html element
